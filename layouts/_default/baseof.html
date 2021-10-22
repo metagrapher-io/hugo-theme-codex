@@ -34,10 +34,17 @@
     {{ $style := resources.Get .src | resources.ExecuteAsTemplate .dest $current_page | toCSS | minify | fingerprint }}
     <link type="text/css" rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}"/>
   {{ end }}
+<<<<<<< HEAD
 
   {{ range .AlternativeOutputFormats }}
   {{ printf `<link rel="%s" type="%s+%s" href="%s" title="%s" />` .Rel .MediaType.Type .MediaType.Suffix .Permalink $.Site.Title | safeHTML }}
   {{ end }}
+=======
+  
+  {{ range .AlternativeOutputFormats }} 
+  {{ printf `<link rel="%s" type="%s+%s" href="%s" title="%s" />` .Rel .MediaType.Type .MediaType.FirstSuffix.Suffix .Permalink $.Site.Title | safeHTML }} 
+  {{ end }} 
+>>>>>>> 9e911e331c90fcd56ae5d01ae5ecb2fa06ba55da
   {{ block "links" . }} {{ end }}
   {{ partial "seo-schema.html" .}}
 
